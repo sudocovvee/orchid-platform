@@ -26,10 +26,10 @@ class Browsing extends Layout
         'sandbox'        => null,
         'src'            => null,
         'srcdoc'         => null,
-        //'style' =>[
-            //'height'         => '100%',
+//        'style' =>[
+//            'height'         => '100%',
             'width'          => '100%',
-        //]
+//        ]
     ];
 
     /**
