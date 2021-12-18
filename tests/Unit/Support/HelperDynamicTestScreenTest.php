@@ -1,27 +1,37 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Support\Facades\Route;
+use Orchid\Platform\Models\User;
+use Orchid\Support\Testing\DynamicTestScreen;
 use Orchid\Support\Testing\ScreenTesting;
 use Orchid\Tests\App\Screens\BaseScreenTesting;
-use Orchid\Tests\TestFeatureCase;
+use Orchid\Tests\TestUnitCase;
 
-class TestBaseHelper extends TestFeatureCase
+class HelperDynamicTestScreenTest extends TestUnitCase
 {
     use ScreenTesting;
+
+    public function testRouteRegister(): void
+    {
+        $wrap = new DynamicTestScreen('text_screen_name');
+        $wrap->register(BaseScreenTesting::class);
+
+        $this->assertTrue(Route::has('text_screen_name'));
+    }
 
     /**
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function example()
+    public function testUsageExample(): void
     {
         $screen = $this->screen()
             ->register(BaseScreenTesting::class);
 
         $screen->display()
+            ->assertOk()
             ->assertSee('Base Screen Test');
 
         $screen
@@ -30,7 +40,7 @@ class TestBaseHelper extends TestFeatureCase
 
         $screen
             ->method('showToast', [
-                'toast', 'Custom message',
+                'toast' => 'Custom message',
             ])
             ->assertSee('Custom message');
     }
@@ -39,9 +49,9 @@ class TestBaseHelper extends TestFeatureCase
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function exampleWithRouteParams()
+    public function textExampleWithRouteParams(): void
     {
-        $user = $this->createAdminUser();
+        $user = User::factory()->make();
 
         $screen = $this->screen()
             ->register(BaseScreenTesting::class, '/_test/users/{user}')
@@ -54,13 +64,26 @@ class TestBaseHelper extends TestFeatureCase
             ->assertSee($user->email);
 
         $screen
-            ->method('showToast')
+            ->call('showToast')
             ->assertSee('Hello, world! This is a toast message.');
 
         $screen
-            ->method('showToast', [
+            ->call('showToast', [
                 'toast', 'Custom message',
             ])
             ->assertSee('Custom message');
+    }
+
+    public function textExampleAuth(): void
+    {
+        $user = User::factory()->make();
+
+        $screen = $this->screen()
+            ->register(BaseScreenTesting::class)
+            ->actingAs($user);
+
+        $screen
+            ->call('getUser')
+            ->assertJson($user->toJson());
     }
 }

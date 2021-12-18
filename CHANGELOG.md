@@ -5,6 +5,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.26.1 - 2021-12-16
+
+### Fixed
+
+- Corrected searchColumns grouping [#2007](https://github.com/orchidsoftware/platform/pull/2007)
+
+## 10.26.0 - 2021-12-08
+
+### Added
+- New method `chunk` for `Relation` field
+
+## 10.25.3 - 2021-12-07
+
+### Fixed
+- Error disabling notifications in the absence of a trait for the user model [#2000](https://github.com/orchidsoftware/platform/issues/2000)
+
+## 10.25.2 - 2021-12-07
+
+### Fixed
+- Prevent form submission by pressing Enter
+
+## 10.25.1 - 2021-12-03
+
+### Changed
+- Passing rows to array table to collection
+
+### Fixed
+- Menu slug translate [#1996](https://github.com/orchidsoftware/platform/pull/1996)
+- Notice for PHP 8.1 [#1995](https://github.com/orchidsoftware/platform/pull/1995)
+- Quick fix empty collection checking [#1993](https://github.com/orchidsoftware/platform/pull/1993)
+- Start session for test helpers [#1984](https://github.com/orchidsoftware/platform/pull/1984)
+- Usage pass name for route [#1984](https://github.com/orchidsoftware/platform/pull/1984)
+
+## 10.25.0 - 2021-12-01
+
+### Added
+- Testing helpers [#1984](https://github.com/orchidsoftware/platform/pull/1984)
+
+### Fixed
+- Denying access to properties [#1989](https://github.com/orchidsoftware/platform/issues/1989)
+- Active tab setting [#1991](https://github.com/orchidsoftware/platform/pull/1991)
+
 ## 10.24.0 - 2021-11-27
 
 ### Added

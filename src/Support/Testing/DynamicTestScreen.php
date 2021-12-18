@@ -26,9 +26,14 @@ class DynamicTestScreen
     /**
      * Route parameters
      *
-     * @var
+     * @var array
      */
-    protected $parameters;
+    protected $parameters = [];
+
+    /**
+     * @var array
+     */
+    protected $session = [];
 
     /**
      * @param string|null $name
@@ -36,23 +41,21 @@ class DynamicTestScreen
     public function __construct(string $name = null)
     {
         $this->http = app(MakesHttpRequestsWrapper::class);
-        $this->name = $name;
+        $this->name = $name ?? Str::uuid()->toString();
     }
 
     /**
      * Declarate dinamic route
      *
-     * @param string      $screen
-     * @param string|null $route
-     * @param string      $middleware
+     * @param string       $screen
+     * @param string|null  $route
+     * @param string|array $middleware
      *
      * @return DynamicTestScreen
      */
     public function register(string $screen, string $route = null, $middleware = 'web')
     {
-        $this->name = Str::uuid()->toString();
-
-        Route::screen('/_test/'.$route ?? $this->name, $screen)
+        Route::screen('/_test/' . ($route ?? $this->name), $screen)
             ->middleware($middleware)
             ->name($this->name);
 
@@ -65,13 +68,27 @@ class DynamicTestScreen
     /**
      * Set Route Parameters
      *
-     * @param mixed $parameters
+     * @param array $parameters
      *
      * @return $this
      */
-    public function parameters($parameters = [])
+    public function parameters(array $parameters = [])
     {
         $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * Set the session to the given array.
+     *
+     * @param array $data
+     *
+     * @return $this
+     */
+    public function session(array $data): DynamicTestScreen
+    {
+        $this->session = $data;
 
         return $this;
     }
@@ -100,14 +117,17 @@ class DynamicTestScreen
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {
-        $route = $this->route();
+        $route = $this->route(array_merge(
+            $this->parameters,
+            ['method' => $method,]
+        ));
+
         $this->from($route);
 
         return $this->http
+            ->withSession($this->session)
             ->followingRedirects()
-            ->post($route, array_merge($parameters, [
-                'method' => $method,
-            ]), $headers);
+            ->post($route, $parameters, $headers);
     }
 
     /**
@@ -127,15 +147,17 @@ class DynamicTestScreen
     /**
      * Get route URL
      *
+     * @param array|null $parameters
+     *
      * @return string
      */
-    protected function route()
+    protected function route(array $parameters = null): string
     {
-        return route($this->name, $this->parameters);
+        return route($this->name, $parameters ?? $this->parameters);
     }
 
     /**
-     * Set the currently logged in user for the application.
+     * Set the currently logged-in user for the application.
      *
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      * @param string|null                                $guard
@@ -150,7 +172,7 @@ class DynamicTestScreen
     }
 
     /**
-     * Set the currently logged in user for the application.
+     * Set the currently logged-in user for the application.
      *
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      * @param string|null                                $guard
