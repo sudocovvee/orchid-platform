@@ -11,7 +11,6 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
-use Throwable;
 
 class BaseScreenTesting extends Screen
 {
@@ -49,8 +48,6 @@ class BaseScreenTesting extends Screen
     /**
      * Views.
      *
-     * @throws Throwable
-     *
      * @return Layout[]
      */
     public function layout(): array
@@ -69,5 +66,15 @@ class BaseScreenTesting extends Screen
     public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    public function getUser(Request $request)
+    {
+        return $request->user()->toJson();
     }
 }
