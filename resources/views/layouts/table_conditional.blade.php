@@ -36,7 +36,7 @@ $rowclass = 'bg-white';
             @foreach($rows as $source)
                 @php
                 if($source->$condition != $value){
-                    $rowclass = 'bg-black-opacity';
+                    $rowclass = 'bg-secondary text-white';
                 }
                 else{
                     $rowclass = 'bg-white';
