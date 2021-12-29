@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.27.2 - 2021-12-27
+
+### Fixed
+
+- Dropdown is closed when click [#2001](https://github.com/orchidsoftware/platform/issues/2001)
+
+
+## 10.27.1 - 2021-12-27
+
+### Fixed
+
+- Typecast to numeric value in old input [#2019](https://github.com/orchidsoftware/platform/issues/2019)
+
+## 10.27.0 - 2021-12-26
+
+### Added
+
+- Romanian language [#2016](https://github.com/orchidsoftware/platform/pull/2016)
+- Accepted-files to cropper and picture [#2023](https://github.com/orchidsoftware/platform/pull/2023)
+
 ## 10.26.1 - 2021-12-16
 
 ### Fixed
