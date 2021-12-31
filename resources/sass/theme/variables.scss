@@ -1,9 +1,9 @@
 // Colors
-$orchid-color: #007bff; //#ac5ca0;
+$orchid-color: #0a5a9c;//#007bff; //#ac5ca0;
 
 
 $white: #ffffff;
-$black: #1c2b36;
+$black: #000000;
 
 $blue: #007bff !default;
 $indigo: #6610f2 !default;
@@ -17,15 +17,15 @@ $teal: #20c997 !default;
 $cyan: #17a2b8 !default;
 
 $primary: $orchid-color;
-$secondary: #6c757d !default;
-$light: #f8f9fa !default;
-$dark: #212529 !default;
-$grey: #495057;
+$secondary: #42484d !default;
+$light: #cccccc !default;
+$dark: #1f2021 !default;
+$grey: rgba(33, 37, 41, 1);
 
 $grey-light: mix($grey, #ffffff, 10%);
 
 $body-bg: #edeef0; //lighten($light, 1%);
-$text-color: #394247;
+$text-color: #181717;
 $text-muted: lighten($text-color, 20%);
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
@@ -35,9 +35,9 @@ $font-size-sm: $font-size-base * .895 !default;
 $link-color: darken($text-color, 15%);
 $link-hover-color: darken($text-color, 30%);
 
-$dropdown-border-radius: 0.35rem;
-$border-radius-base: 2px;
-$border-color: darken($light, 5%);
+$dropdown-border-radius: 0.4rem;
+$border-radius-base: 3px;
+$border-color: darken($light, 15%);
 
 
 // Buttons
