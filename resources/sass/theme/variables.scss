@@ -1,5 +1,5 @@
 // Colors
-$orchid-color: #007bff;//#ac5ca0;
+$orchid-color: #0A5A9C;//#007bff;//#ac5ca0;
 
 
 $white : #ffffff;
@@ -22,11 +22,11 @@ $light: #dcdcdc !default;
 $dark: #18191a !default;
 $grey: #3c4146;
 
-$grey-light : mix($grey, #ffffff, 10%);
+$grey-light : mix($grey, $light, 10%);
 
 $body-bg : #edeef0;//lighten($light, 1%);
 $text-color : #333436;
-$text-muted : lighten($text-color, 25%);
+$text-muted : lighten($text-color, 15%);
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg: $font-size-base * 1.25 !default;
