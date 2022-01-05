@@ -1,0 +1,9 @@
+/* Custom CSS to override the default Orchid styles */
+
+/* table headers - make more readable */
+.table thead tr th, .bg-white .text-muted {
+  color: rgba(33,37,41,1);
+}
+a.text-muted {
+  text-decoration: underline;
+}
